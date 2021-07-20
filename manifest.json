@@ -1,0 +1,18 @@
+{
+    "name": "bonefinder",
+    "version": "0.1",
+    "manifest_version":2,
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["find_bone.js"]
+        }
+    ],
+    "browser_action": {
+        "default_title": "Bear"
+    },
+    "background": {
+        "scripts":["background.js"]
+    },
+    "permissions": ["tabs"]
+}
