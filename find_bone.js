@@ -1,10 +1,3 @@
-//alert('Grrrr.')
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//     const re = new RegExp('bear', 'gi')
-//     const matches = document.documentElement.innerHTML.match(re)
-//     sendResponse({count: matches.length})
-// })
-
 
 const Built_In = [
     {name:"test", key_type:"test", key_re:"bear"},
@@ -48,6 +41,7 @@ class Bone {
 
 let bones = {};
 
+
 Built_In.forEach(bone => bones[bone.name] = new Bone(bone.key_type, bone.key_re))
 
 
@@ -55,20 +49,13 @@ for (const [key, value] of Object.entries(bones)) {
     // console.log(key, value)
     const matches = document.documentElement.innerHTML.match(bones[key]["key_re"]) || []
     console.log(matches)
-    // if (bones[key]["key_re"].test(document.documentElement.innerHTML)) {
-    //     console.log("name: " + key + " regex: "+bones[key]["key_re"]  + " matched!")
-    //     chrome.runtime.sendMessage({
-    //         url: window.location.href,
-    //         bone_name: key,
-    //         bone_value: 
-    //     })
-
 
     if (matches.length > 0) {
         matches.forEach(function (match) {
+
             console.log("name: " + key + " regex: "+ match  + " matched!")
             chrome.runtime.sendMessage({
-                url: window.location.href,
+                // url: window.location.href,
                 bone_name: key,
                 bone_value: match
             })
@@ -80,9 +67,6 @@ for (const [key, value] of Object.entries(bones)) {
 
 
 // bones.forEach(bone => console.log(bones[bone].key_re))
-
-
-
 
 const re = new RegExp('bear', 'gi')
 const matches = document.documentElement.innerHTML.match(re) || []
